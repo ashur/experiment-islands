@@ -10,6 +10,7 @@ export default class Stopwatch
 
 		setInterval( () =>
 		{
+			this.offset = Math.floor((Date.now() - this.start) / 1000);
 			this.tick++;
 			this.render();
 
@@ -29,11 +30,14 @@ export default class Stopwatch
 
 	render()
 	{
-		this.ui.$tick.innerText = this.tick;
+		this.ui.$tick.innerText = this.offset;
+		this.ui.$tick.dataset.fontSize = this.offset >= 100 ? "small" : "normal";
 	}
 
 	setVars()
 	{
+		this.start = Date.now();
+		this.offset = 0;
 		this.tick = 0;
 	}
 }

@@ -11,6 +11,7 @@
 	display: grid;
 	justify-content: center;
 	margin-top: 50vh;
+	margin-top: 50svh;
 	min-width: 10rem;
 	padding: 1em;
 	text-align: center;
@@ -33,8 +34,15 @@
 	display: grid;
 	font-size: 3rem;
 	font-variant-numeric: tabular-nums;
-	height: 2em;
+	height: 6rem;
 	line-height: 1;
 	text-align: center;
-	width: 2em;
+	text-shadow: 0 0 5px currentcolor,
+		0 0 15px currentcolor;
+	transition: font-size 0.125s ease;
+	width: 6rem;
+}
+
+[data-ref="tick"][data-font-size="small"] {
+	font-size: 2rem;
 }
