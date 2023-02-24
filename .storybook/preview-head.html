@@ -1,0 +1,7 @@
+<script type="module">
+	document.querySelectorAll("[data-module]").forEach( async (el) =>
+	{
+		const Module = await import(`/scripts/modules/${el.dataset.module}.module.js`);
+		new Module.default(el);
+	});
+</script>

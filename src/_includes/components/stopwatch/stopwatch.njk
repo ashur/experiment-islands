@@ -1,0 +1,17 @@
+{% macro render(
+	id,
+	name
+) %}
+	<div
+		class="stopwatch"
+		data-module="stopwatch"
+		data-is-island="true"
+	>
+		<h2 class="title">Stopwatch</h2>
+		<span data-ref="tick">0</span>
+
+		<noscript>
+			<p>Sorry, this component requires JavaScript.</p>
+		</noscript>
+	</div>
+{% endmacro %}

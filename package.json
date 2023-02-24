@@ -1,0 +1,55 @@
+{
+  "name": "eleventy-template",
+  "version": "1.0.0",
+  "description": "An Eleventy template",
+  "scripts": {
+    "build": "eleventy",
+    "clean": "rm -rf ./dist",
+    "lint": "eslint src/**/*.js ./*.js",
+    "prestorybook": "npm run build",
+    "prestorybook:build": "npm run build",
+    "serve": "eleventy --serve",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "storybook:dev": "STORYBOOK_ENV=development start-storybook -p 6006",
+    "test": "mocha ./test/**/*.js",
+    "test:watch": "onchange -i './src/**/*.js' './test/**/*.js' -- npm run test"
+  },
+  "author": "Ashur Cabrera",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.0",
+    "@aaashur/eleventy-toolkit": "github:ashur/eleventy-toolkit#semver:^v0.2.0",
+    "clean-css": "^5.2.2",
+    "js-yaml": "^4.1.0",
+    "markdown-it-anchor": "^8.4.1",
+    "markdown-it-attrs": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@storybook/addon-a11y": "^6.5.6",
+    "@storybook/addon-actions": "^6.5.6",
+    "@storybook/addon-console": "^1.2.3",
+    "@storybook/addon-essentials": "^6.5.6",
+    "@storybook/addon-interactions": "^6.5.6",
+    "@storybook/addon-links": "^6.5.6",
+    "@storybook/builder-webpack5": "^6.5.6",
+    "@storybook/cli": "^6.5.6",
+    "@storybook/html": "^6.5.6",
+    "@storybook/jest": "^0.0.10",
+    "@storybook/manager-webpack5": "^6.5.6",
+    "@storybook/test-runner": "^0.1.1",
+    "@storybook/testing-library": "^0.0.11",
+    "babel-loader": "^8.2.4",
+    "chai": "^4.3.6",
+    "eslint": "^8.11.0",
+    "eslint-plugin-sort-requires": "^2.1.0",
+    "jest": "^27.5.1",
+    "mocha": "^10.0.0",
+    "onchange": "^7.1.0",
+    "simple-nunjucks-loader": "^3.2.0"
+  },
+  "eslintIgnore": [
+    "!.*"
+  ]
+}

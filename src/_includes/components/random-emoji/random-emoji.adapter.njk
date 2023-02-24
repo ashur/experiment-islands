@@ -1,0 +1,14 @@
+{%- from "components/random-emoji/random-emoji.njk" import render as RandomEmoji with context -%}
+
+{#
+ # @param {Object} params
+ #}
+{% macro render(params) %}
+	{{ RandomEmoji(
+		description = params.description
+	) }}
+{% endmacro %}
+
+{% if storybookArgs %}
+	{{ render(storybookArgs) }}
+{% endif %}

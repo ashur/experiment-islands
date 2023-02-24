@@ -1,0 +1,44 @@
+[data-theme] {
+	--transition-duration: 0s;
+
+	background: var(--theme-bgc);
+	color: var(--theme-c);
+	transition: background var(--transition-duration) ease,
+		color var(--transition-duration) ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	[data-theme] {
+		--transition-duration: 0.5s;
+	}
+}
+
+[data-theme="dark"] {
+	--theme-bgc: #292929;
+	--theme-bdc: #666;
+	--theme-c: #eee;
+}
+
+[data-theme="light"] {
+	--theme-bgc: #fefefe;
+	--theme-bdc: #eaeaea;
+	--theme-c: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+	body:not([data-theme]),
+	[data-theme="auto"] {
+		--theme-bgc: #333;
+		--theme-bdc: #666;
+		--theme-c: #eee;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	body:not([data-theme]),
+	[data-theme="auto"] {
+		--theme-bgc: #fefefe;
+		--theme-bdc: #eaeaea;
+		--theme-c: #111;
+	}
+}

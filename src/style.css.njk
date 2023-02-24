@@ -1,0 +1,8 @@
+---
+permalink: /style.css
+---
+{%- set styles -%}
+	{%- includeGlob "components/**/*.css" -%}
+{%- endset -%}
+
+{{- styles | cssmin | safe -}}

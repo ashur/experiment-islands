@@ -1,0 +1,4 @@
+---
+permalink: "{{ page.filePathStem | pagePermalink }}"
+layout: "layouts/page.njk"
+tags: ["pages"]

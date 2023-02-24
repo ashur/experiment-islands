@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-js="false">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>{{ meta.title }}</title>
+
+	<meta name="title" content="{{ meta.seo.title }}">
+
+	{% if meta.seo.description %}
+		<meta name="description" content="{{ meta.seo.description }}">
+	{% endif %}
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ meta.url }}">
+	<meta property="og:title" content="{{ meta.social.title }}">
+	{% if meta.social.description %}
+		<meta property="og:description" content="{{ meta.social.description }}">
+	{% endif %}
+	{% if meta.social.image %}
+		<meta property="og:image" content="{{ meta.social.image }}">
+	{% endif %}
+
+	<!-- Twitter -->
+	<meta property="twitter:url" content="{{ meta.url }}">
+	<meta property="twitter:title" content="{{ meta.social.title }}">
+	{% if meta.social.description %}
+		<meta property="twitter:description" content="{{ meta.social.description }}">
+	{% endif %}
+	{% if meta.social.image %}
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:image" content="{{ meta.social.image }}">
+	{% endif %}
+
+	{# Prove ownership for verification by 3rd-party sites #}
+	{% for link in verification.links %}
+		<link href="{{ link.href }}" rel="me">
+	{% endfor %}
+
+	{%- set styles -%}
+		{% include "css/reset.css" %}
+		{% include "css/global.css" %}
+		{% include "css/composition.css" %}
+		{% include "css/themes.css" %}
+		{% include "css/utilities.css" %}
+
+		{% for component in page.dependencies.components %}
+			{% include "components/" + component + "/" + component + ".css" ignore missing %}
+		{% endfor %}
+	{%- endset -%}
+
+	<style>
+		{{ styles | safe | cssmin | safe }}
+	</style>
+
+	<link rel="stylesheet" href="/style.css" />
+
+	<script>
+		document.querySelector( "html" ).dataset.js = true;
+	</script>
+
+	<script src="/state.js">
+</head>
+<body>
+	{{ content | safe }}
+
+	<script>
+		(() =>
+		{
+			const loadModuleScript = async (el, moduleName) =>
+			{
+				const Module = await import(`/scripts/modules/${el.dataset.module}.module.js`);
+				new Module.default(el);
+			}
+
+			document.querySelectorAll("[data-module]").forEach( (el) =>
+			{
+				if( el.dataset.isIsland === "true" )
+				{
+					const options = {
+					  rootMargin: '0px',
+					  threshold: 0,
+					}
+
+					const observer = new IntersectionObserver((entries, observer) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting)
+							{
+								const {target} = entry;
+								loadModuleScript( target, target.dataset.module );
+								observer.unobserve( target );
+							}
+						});
+					}, options);
+
+					observer.observe( el );
+				}
+				else
+				{
+					loadModuleScript(el, el.dataset.module);
+				}
+			});
+		})();
+	</script>
+</body>
+</html>

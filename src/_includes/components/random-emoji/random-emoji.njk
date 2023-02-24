@@ -1,0 +1,17 @@
+{% macro render(
+	description
+) %}
+	<div
+		class="random-emoji"
+		data-module="random-emoji"
+		data-is-island="true"
+	>
+		<h2 class="title">Random Emoji</h2>
+		<span class="emoji" data-ref="emoji">
+			<noscript>
+				{# Fallback if JavaScript is disabled #}
+				{{ ["🔨", "✨", "⚠️", "🏝", "💫", "📸", "🐞", "🧡", "✳️"] | random }}
+			</noscript>
+		</span>
+	</div>
+{% endmacro %}
